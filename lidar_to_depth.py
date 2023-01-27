@@ -10,8 +10,8 @@ import tqdm
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 sys.path.append(BASE_DIR)
-sys.path.append(os.path.join(ROOT_DIR, 'mayavi'))
-sys.path.append(os.path.join(ROOT_DIR, 'models'))
+# sys.path.append(os.path.join(ROOT_DIR, 'mayavi'))
+# sys.path.append(os.path.join(ROOT_DIR, 'models'))
 from kitti_object import *
 
 
@@ -26,7 +26,8 @@ def save_depth_as_uint16png_upload(img, filename):
 def lidar_to_depth(idx_filename, split, sparse_depth_dir):
     if not os.path.exists(sparse_depth_dir):
         os.makedirs(sparse_depth_dir)
-    dataset = kitti_object('data/kitti_sfd_seguv_twise', split)
+    # dataset = kitti_object('data/kitti_sfd_seguv_twise', split)
+    dataset = kitti_object('../OpenPCDet/data/kitti', split)
 
     data_idx_list = [int(line.rstrip()) for line in open(idx_filename)]
 
@@ -57,15 +58,20 @@ def lidar_to_depth(idx_filename, split, sparse_depth_dir):
         save_depth_as_uint16png_upload(sparse_depth_map, file_name)
 
 print('---------------Start to generate training sparse depth maps---------------')
+# lidar_to_depth( \
+#     'data/kitti_sfd_seguv_twise/ImageSets/trainval.txt',
+#     'training',
+#     'data/kitti_sfd_seguv_twise/training/depth_sparse',
+#     )
 lidar_to_depth( \
-    'data/kitti_sfd_seguv_twise/ImageSets/trainval.txt',
+    '../OpenPCDet/data/kitti/ImageSets/trainval.txt',
     'training',
     'data/kitti_sfd_seguv_twise/training/depth_sparse',
     )
 
 print('---------------Start to generate testing sparse depth maps---------------')
 lidar_to_depth( \
-    'data/kitti_sfd_seguv_twise/ImageSets/test.txt',
+    '../OpenPCDet/data/kitti/ImageSets/test.txt',
     'testing',
     'data/kitti_sfd_seguv_twise/testing/depth_sparse',
     )
