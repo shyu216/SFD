@@ -64,7 +64,12 @@ print('---------------Start to generate training sparse depth maps--------------
 #     'data/kitti_sfd_seguv_twise/training/depth_sparse',
 #     )
 lidar_to_depth( \
-    '../OpenPCDet/data/kitti/ImageSets/trainval.txt',
+    '../OpenPCDet/data/kitti/ImageSets/train.txt',
+    'training',
+    'data/kitti_sfd_seguv_twise/training/depth_sparse',
+    )
+lidar_to_depth( \
+    '../OpenPCDet/data/kitti/ImageSets/val.txt',
     'training',
     'data/kitti_sfd_seguv_twise/training/depth_sparse',
     )
