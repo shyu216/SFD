@@ -30,7 +30,7 @@ def depth_to_lidar(idx_filename, split, dense_depth_dir, pseudo_depth_dir):
     for data_idx in tqdm.tqdm(data_idx_list):
         calib = dataset.get_calibration(data_idx)
         img_rgb = dataset.get_image(data_idx)
-        dense_img_filename = os.path.join(dense_depth_dir, '%06d.png'%(data_idx))
+        dense_img_filename = os.path.join(dense_depth_dir, '%010d.png'%(data_idx))
         img_depth_small = depth_read(dense_img_filename)
         h, w, _ = img_rgb.shape
         th,tw = img_depth_small.shape
