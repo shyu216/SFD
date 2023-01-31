@@ -19,7 +19,8 @@ def save_depth_as_bin(pc_velo, filename):
     return
 
 def depth_to_lidar(idx_filename, split, dense_depth_dir, pseudo_depth_dir):
-    dataset = kitti_object('data/kitti_sfd_seguv_twise', split)
+    # dataset = kitti_object('data/kitti_sfd_seguv_twise', split)
+    dataset = kitti_object('../OpenPCDet/data/kitti', split)
 
     data_idx_list = [int(line.rstrip()) for line in open(idx_filename)]
 
@@ -50,17 +51,30 @@ def depth_to_lidar(idx_filename, split, dense_depth_dir, pseudo_depth_dir):
         save_depth_as_bin(pc_velo_rgb_seg_uv.astype(np.float32), dense_velo_filename)
 
 print('---------------Start to generate training pseudo point clouds---------------')
+# depth_to_lidar( \
+#     'data/kitti_sfd_seguv_twise/ImageSets/trainval.txt',
+#     'training',
+#     'data/kitti_sfd_seguv_twise/training/depth_dense_twise',
+#     'data/kitti_sfd_seguv_twise/training/depth_pseudo_rgbseguv_twise'
+# )
 depth_to_lidar( \
-    'data/kitti_sfd_seguv_twise/ImageSets/trainval.txt',
+    '../OpenPCDet/data/kitti/ImageSets/train.txt',
     'training',
-    'data/kitti_sfd_seguv_twise/training/depth_dense_twise',
-    'data/kitti_sfd_seguv_twise/training/depth_pseudo_rgbseguv_twise'
+    '../testresult',
+    # 'data/kitti_sfd_seguv_twise/training/depth_pseudo_rgbseguv_twise'
+    '../new'
 )
+# depth_to_lidar( \
+#     'data/kitti_sfd_seguv_twise/ImageSets/val.txt',
+#     'training',
+#     '../testresult',
+#     'data/kitti_sfd_seguv_twise/training/depth_pseudo_rgbseguv_twise'
+# )
 
-print('---------------Start to generate testing pseudo point clouds---------------')
-depth_to_lidar( \
-    'data/kitti_sfd_seguv_twise/ImageSets/test.txt',
-    'testing',
-    'data/kitti_sfd_seguv_twise/testing/depth_dense_twise',
-    'data/kitti_sfd_seguv_twise/testing/depth_pseudo_rgbseguv_twise'
-)
+# print('---------------Start to generate testing pseudo point clouds---------------')
+# depth_to_lidar( \
+#     'data/kitti_sfd_seguv_twise/ImageSets/test.txt',
+#     'testing',
+#     'data/kitti_sfd_seguv_twise/testing/depth_dense_twise',
+#     'data/kitti_sfd_seguv_twise/testing/depth_pseudo_rgbseguv_twise'
+# )
