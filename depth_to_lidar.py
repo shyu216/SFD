@@ -48,7 +48,8 @@ def depth_to_lidar(idx_filename, split, dense_depth_dir, pseudo_depth_dir):
         pc_seg = np.ones((pc_rgb.shape[0],1),dtype=pc_velo.dtype)
         pc_velo_rgb_seg_uv = np.concatenate([pc_velo, pc_rgb, pc_seg, pc_uv],axis=-1)
         dense_velo_filename = os.path.join(pseudo_depth_dir, '%06d.bin'%(data_idx))
-        save_depth_as_bin(pc_velo_rgb_seg_uv.astype(np.float32), dense_velo_filename)
+        # save_depth_as_bin(pc_velo_rgb_seg_uv.astype(np.float32), dense_velo_filename)
+        save_depth_as_bin(pc_velo.astype(np.float32),dense_velo_filename)
 
 print('---------------Start to generate training pseudo point clouds---------------')
 # depth_to_lidar( \
