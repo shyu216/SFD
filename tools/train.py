@@ -52,7 +52,8 @@ def parse_config():
 
     if args.set_cfgs is not None:
         cfg_from_list(args.set_cfgs, cfg)
-
+    print("+++++++++++++++++++++++++++++++++")
+    print(cfg)
     return args, cfg
 
 
